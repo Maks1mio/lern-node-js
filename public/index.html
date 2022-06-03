@@ -6,21 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Home page</title>
+    <title>GitHub search</title>
 </head>
 
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/contact">Contact</a>
-    </nav>
-    <h1>Home page</h1>
-    <div style="margin-bottom: 10px;" class="boxContent">
+    <nav class="nav_bar">
+        <a class="logoFonts" href="/">GitHub search</a>
+        <a class="buttonLinks" href="/contact">Contact</a>
         <!-- Для обособления кидаем элементы в форму -->
-        <label class="labelText" for="searchInput">Search the site:</label>
+        <input class="inputStyle" type="text" id="searchInput" behavior="alternate"/> <!-- Даём понятное имя -->
         <!-- В  for устанавливается id инпута, тогда по нажатии на label будет выделено поле для ввода текста -->
-        <input class="inputStyle" type="search" id="searchInput" /> <!-- Даём понятное имя -->
-        <button class="button" id="searchButton">Update</button> <!-- Обработчики событий добавляем в коде -->
+        <button class="updateButton" id="searchButton">Search</button> <!-- Обработчики событий добавляем в коде -->
+    </nav>
+    <div class="toolBar">
+        <div id="countAllUsers">sffsa</div>
+    </div>
+    <div class="mainPage" id="contentID">
+
     </div>
     <script src="api-git.js"></script>
 </body>
