@@ -53,6 +53,7 @@ body {
     left: 10px;
     width: 40px;
     border-radius: 6px;
+    z-index: 2;
 }
 
 .mainPage {
@@ -75,6 +76,7 @@ body {
     font-weight: 600;
     font-size: 14px;
     width: 100%;
+    z-index: 2;
 }
 
 .labelText {
@@ -82,6 +84,7 @@ body {
     padding-right: 16px;
     font-weight: 600;
     font-size: 14px;
+    z-index: 2;
 }
 
 .inputStyle {
@@ -139,13 +142,14 @@ body {
 .button {
     margin-left: 5px;
     background: #2f2f2f;
-    border: 0px solid #fff;
+    border: 1px solid #4a4a4a;
     border-radius: 6px;
     width: 100px;
     padding: 5px 10px;
     color: #fff;
     height: 40px;
     transition: .2s ease-in-out all;
+    z-index: 2; 
 }
 
 .button:hover {

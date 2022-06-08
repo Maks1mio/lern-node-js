@@ -87,11 +87,34 @@ function addElement(user) {
                 UserCounterArray();
         });
 
+        let newInput = document.createElement("input");
+        newInput.className = "input";
+        newInput.type = "text";
+
+        let divBackground = document.createElement("div");
+        divBackground.className = "background";
+        divBackground.style = `
+        background: linear-gradient(to left, #2f2f2fa6, #2f2f2f), url(${user.avatar_url});
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 50px;
+        filter: blur(4px);
+        position: absolute;
+        left: 50px;
+        z-index: 1;
+        right: 50px;
+        border-radius: 6px;
+        clip-path: border-box;
+        `;
+
+
         document.getElementById("contentID").appendChild(newDiv, my_div);
         newDiv.appendChild(newImg);
         newDiv.appendChild(newSpan);
         newDiv.appendChild(openProfileButton);
         newDiv.appendChild(newButton);
+        newDiv.appendChild(divBackground);
 }
 
 // user counter
@@ -111,4 +134,7 @@ function saveUser(user) {
 // search button
 
 searchButton.addEventListener("click", addUser);
+
+
+
 
