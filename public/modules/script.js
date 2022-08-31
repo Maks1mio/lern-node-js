@@ -39,36 +39,41 @@ function dropPay(id) {
 }
 
 const pizzaFilter = document.getElementById("pizzaFilter");
-pizzaFilter.addEventListener("click", () => 
+pizzaFilter.addEventListener("click", () =>
     addElement(json.menu.filter((item) => item.category === "pizza"))
 );
 
 const shaurmaFilter = document.getElementById("shaurmaFilter");
-shaurmaFilter.addEventListener("click", () => 
+shaurmaFilter.addEventListener("click", () =>
     addElement(json.menu.filter((item) => item.category === "shaurma"))
 );
 
 const burgerFilter = document.getElementById("burgerFilter");
-burgerFilter.addEventListener("click", () => 
+burgerFilter.addEventListener("click", () =>
     addElement(json.menu.filter((item) => item.category === "burgers"))
 );
 
 const saladFilter = document.getElementById("saladFilter");
-saladFilter.addEventListener("click", () => 
+saladFilter.addEventListener("click", () =>
     addElement(json.menu.filter((item) => item.category === "salads"))
 );
 
 const drinkFilter = document.getElementById("drinkFilter");
-drinkFilter.addEventListener("click", () => 
+drinkFilter.addEventListener("click", () =>
     addElement(json.menu.filter((item) => item.category === "drinks"))
 );
 
 const chickenFilter = document.getElementById("chickenFilter");
-chickenFilter.addEventListener("click", () => 
+chickenFilter.addEventListener("click", () =>
     addElement(json.menu.filter((item) => item.category === "chicken"))
 );
 
 const sandwichFilter = document.getElementById("sandwichFilter");
-sandwichFilter.addEventListener("click", () => 
+sandwichFilter.addEventListener("click", () =>
     addElement(json.menu.filter((item) => item.category === "sandwiches"))
+);
+
+const clearFilter = document.getElementById("clearFilter");
+clearFilter.addEventListener("click", () =>
+    addElement(json.menu)
 );
