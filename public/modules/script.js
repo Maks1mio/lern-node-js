@@ -37,3 +37,38 @@ function addElement(menu) {
 function dropPay(id) {
     console.log("ID: " + id + " Название товара: " + json[id].name)
 }
+
+const pizzaFilter = document.getElementById("pizzaFilter");
+pizzaFilter.addEventListener("click", () => 
+    addElement(json.menu.filter((item) => item.category === "pizza"))
+);
+
+const shaurmaFilter = document.getElementById("shaurmaFilter");
+shaurmaFilter.addEventListener("click", () => 
+    addElement(json.menu.filter((item) => item.category === "shaurma"))
+);
+
+const burgerFilter = document.getElementById("burgerFilter");
+burgerFilter.addEventListener("click", () => 
+    addElement(json.menu.filter((item) => item.category === "burgers"))
+);
+
+const saladFilter = document.getElementById("saladFilter");
+saladFilter.addEventListener("click", () => 
+    addElement(json.menu.filter((item) => item.category === "salads"))
+);
+
+const drinkFilter = document.getElementById("drinkFilter");
+drinkFilter.addEventListener("click", () => 
+    addElement(json.menu.filter((item) => item.category === "drinks"))
+);
+
+const chickenFilter = document.getElementById("chickenFilter");
+chickenFilter.addEventListener("click", () => 
+    addElement(json.menu.filter((item) => item.category === "chicken"))
+);
+
+const sandwichFilter = document.getElementById("sandwichFilter");
+sandwichFilter.addEventListener("click", () => 
+    addElement(json.menu.filter((item) => item.category === "sandwiches"))
+);
