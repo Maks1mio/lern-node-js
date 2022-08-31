@@ -6,25 +6,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>GitHub search</title>
+    <title>Document</title>
 </head>
 
-<body>
-    <nav class="nav_bar">
-        <a class="logoFonts" href="/">GitHub search</a>
-        <a class="buttonLinks" href="/contact">Contact</a>
-        <!-- Для обособления кидаем элементы в форму -->
-        <input class="inputStyle" type="text" id="searchInput" behavior="alternate"/> <!-- Даём понятное имя -->
-        <!-- В  for устанавливается id инпута, тогда по нажатии на label будет выделено поле для ввода текста -->
-        <button class="updateButton" id="searchButton">Search</button> <!-- Обработчики событий добавляем в коде -->
-    </nav>
-    <div class="toolBar">
-        <div id="countAllUsers">count</div>
+<body class="bacground_main">
+    <div>
+        <div class="header_description">Сделай заказ напрямую из ресторана</div>
+        <div class="center_content">
+            <div class="left_content">
+                <div class="product_list" id="filter">
+                    <button class="product-filter" onclick="showAlert()">
+                        Блины
+                    </button>
+                    <button class="product-filter" id="addMenuItems">
+                        Шаурма
+                    </button>
+                    <button class="product-filter" id="addMenuItems">
+                        Сендвичм
+                    </button>
+                    <button class="product-filter" id="addMenuItems">
+                        Бургеры
+                    </button>
+                    <button class="product-filter" id="addMenuItems">
+                        Картофль & Курица
+                    </button>
+                    <button class="product-filter" id="addMenuItems">
+                        Тортилья & Салаты
+                    </button>
+                    <button class="product-filter" id="addMenuItems">
+                        Напитки & Десерты
+                    </button>
+                </div>
+                <div class="product_list" style="margin-top: 20px; margin-bottom: 20px;">
+                    <div style="font-size: 20px; padding: 20px;">
+                        Корзина
+                    </div>
+                    <div class="container">
+                        <div>
+                            Название
+                        </div>
+                        <div>
+                            Количество
+                        </div>
+                    </div>
+                    <div class="pay_button">
+                        Оформить заказ
+                    </div>
+                </div>
+            </div>
+            <div class="right_content">
+                <div class="market_list" id="contentID">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mainPage" id="contentID">
-
-    </div>
-    <script src="api-git.js"></script>
 </body>
+
+<script type="module" src="./modules/script.js"></script>
 
 </html>

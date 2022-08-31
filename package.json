@@ -14,7 +14,8 @@
   "author": "EvT <one.evt@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.0.1"
+    "chalk": "^5.0.1",
+    "discord.js": "^13.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
