@@ -2,32 +2,35 @@ let response = await fetch("../modules/data.json");
 let json = await response.json();
 console.log(json)
 
-addElement(json);
+const menuList = document.getElementById("contentID");
 
-function addElement(json) {
-    for (let i = 0; i < json.menu.length; i++) {
-        console.log(json.menu[i].image)
+addElement(json.menu);
+
+function addElement(menu) {
+    menuList.innerHTML = ""; // очистка от предыдущего меню
+
+    for (let i = 0; i < menu.length; i++) {
+        console.log(menu[i].image)
         let newDiv = document.createElement("div");
         newDiv.className = "product";
         newDiv.innerHTML =
             `
-                        <div style="background-image:url('` + json.menu[i].image + `');" class="product_prev">
-                        </div>
-                        <div class="name_product">
-                        ` + json.menu[i].name + `
-                        </div>
-                        <div class="line"></div>
-                        <div class="discription_product">` + json.menu[i].description + `</div>
-                        <div class="line"></div>
-                        <div class="price_product">
-                            Цена: ` + json.menu[i].price + ` Р.
-                        </div>
-                        <input class="product_count" type="number" min="0" max="20">
-                        <input type="button" value="Добавить в корзину" id="` + i + `" onclick="dropPay(id)"/>
+            <div style="background-image:url('` + menu[i].image + `');" class="product_prev">
+            </div>
+            <div class="name_product">
+            ` + menu[i].name + `
+            </div>
+            <div class="line"></div>
+            <div class="discription_product">` + menu[i].description + `</div>
+            <div class="line"></div>
+            <div class="price_product">
+                Цена: ` + menu[i].price + ` Р.
+            </div>
+            <input class="product_count" type="number" min="0" max="20">
+            <input type="button" value="Добавить в корзину" id="` + i + `" onclick="dropPay(id)"/>
         `
 
-
-        document.getElementById("contentID").appendChild(newDiv);
+        menuList.appendChild(newDiv);
     }
 }
 
