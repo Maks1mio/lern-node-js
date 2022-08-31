@@ -2,32 +2,35 @@ let response = await fetch("../modules/data.json");
 let json = await response.json();
 console.log(json)
 
-addElement(json);
+const menuList = document.getElementById("contentID");
 
-function addElement(json) {
-    for (let i = 0; i < json.menu.length; i++) {
-        console.log(json.menu[i].image)
+addElement(json.menu);
+
+function addElement(menu) {
+    menuList.innerHTML = ""; // очистка от предыдущего меню
+
+    for (let i = 0; i < menu.length; i++) {
+        console.log(menu[i].image)
         let newDiv = document.createElement("div");
         newDiv.className = "product";
         newDiv.innerHTML =
             `
-                        <div style="background-image:url('` + json.menu[i].image + `');" class="product_prev">
-                        </div>
-                        <div class="name_product">
-                        ` + json.menu[i].name + `
-                        </div>
-                        <div class="line"></div>
-                        <div class="discription_product">` + json.menu[i].description + `</div>
-                        <div class="line"></div>
-                        <div class="price_product">
-                            Цена: ` + json.menu[i].price + ` Р.
-                        </div>
-                        <input class="product_count" type="number" min="0" max="20">
-                        <input type="button" value="Добавить в корзину" id="` + i + `" onclick="dropPay(id)"/>
+            <div style="background-image:url('` + menu[i].image + `');" class="product_prev">
+            </div>
+            <div class="name_product">
+            ` + menu[i].name + `
+            </div>
+            <div class="line"></div>
+            <div class="discription_product">` + menu[i].description + `</div>
+            <div class="line"></div>
+            <div class="price_product">
+                Цена: ` + menu[i].price + ` Р.
+            </div>
+            <input class="product_count" type="number" min="0" max="20">
+            <input type="button" value="Добавить в корзину" id="` + i + `" onclick="dropPay(id)"/>
         `
 
-
-        document.getElementById("contentID").appendChild(newDiv);
+        menuList.appendChild(newDiv);
     }
 }
 
@@ -35,39 +38,42 @@ function dropPay(id) {
     console.log("ID: " + id + " Название товара: " + json[id].name)
 }
 
-const filterButton = document.getElementById("filterButton");
+const pizzaFilter = document.getElementById("pizzaFilter");
+pizzaFilter.addEventListener("click", () =>
+    addElement(json.menu.filter((item) => item.category === "pizza"))
+);
 
-filterButton.addEventListener("click", filter);
+const shaurmaFilter = document.getElementById("shaurmaFilter");
+shaurmaFilter.addEventListener("click", () =>
+    addElement(json.menu.filter((item) => item.category === "shaurma"))
+);
 
-function filter() {
-    const elements = json.menu.filter((item) => item.category === "sandwiches")
-    console.log(elements)
-    document.getElementById("contentID").innerHTML = "";
+const burgerFilter = document.getElementById("burgerFilter");
+burgerFilter.addEventListener("click", () =>
+    addElement(json.menu.filter((item) => item.category === "burgers"))
+);
 
-    for (let i = 0; i < elements.length; i++) {
-        console.log(elements[i].image)
-        let newDiv = document.createElement("div");
-        newDiv.className = "product";
-        newDiv.innerHTML =
-            `
-                            <div style="background-image:url('` + elements[i].image + `');" class="product_prev">
-                            </div>
-                            <div class="name_product">
-                            ` + elements[i].name + `
-                            </div>
-                            <div class="line"></div>
-                            <div class="discription_product">` + elements[i].description + `</div>
-                            <div class="line"></div>
-                            <div class="price_product">
-                                Цена: ` + elements[i].price + ` Р.
-                            </div>
-                            <input class="product_count" type="number" min="0" max="20">
-                            <input type="button" value="Добавить в корзину" id="` + i + `" onclick="dropPay(id)"/>
-            `
+const saladFilter = document.getElementById("saladFilter");
+saladFilter.addEventListener("click", () =>
+    addElement(json.menu.filter((item) => item.category === "salads"))
+);
 
+const drinkFilter = document.getElementById("drinkFilter");
+drinkFilter.addEventListener("click", () =>
+    addElement(json.menu.filter((item) => item.category === "drinks"))
+);
 
-        document.getElementById("contentID").appendChild(newDiv);
-    }
-}
+const chickenFilter = document.getElementById("chickenFilter");
+chickenFilter.addEventListener("click", () =>
+    addElement(json.menu.filter((item) => item.category === "chicken"))
+);
 
+const sandwichFilter = document.getElementById("sandwichFilter");
+sandwichFilter.addEventListener("click", () =>
+    addElement(json.menu.filter((item) => item.category === "sandwiches"))
+);
 
+const clearFilter = document.getElementById("clearFilter");
+clearFilter.addEventListener("click", () =>
+    addElement(json.menu)
+);
