@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+//вместо фреймворка express
 
 const server = http.createServer((req, res) => {
 

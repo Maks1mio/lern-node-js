@@ -1,8 +1,9 @@
 let response = await fetch("../modules/data.json");
-let json = await response.json();
+let json = await response.json();   
 console.log(json)
 
 const menuList = document.getElementById("contentID");
+const modal = $.modal(open)
 
 addElement(json.menu);
 
@@ -10,7 +11,6 @@ function addElement(menu) {
     menuList.innerHTML = ""; // очистка от предыдущего меню
 
     for (let i = 0; i < menu.length; i++) {
-        console.log(menu[i].image)
         let newDiv = document.createElement("div");
         newDiv.className = "product";
         newDiv.innerHTML =
@@ -23,20 +23,28 @@ function addElement(menu) {
             <div class="line"></div>
             <div class="discription_product">` + menu[i].description + `</div>
             <div class="line"></div>
+            <div class="line">
+            
+            </div>
             <div class="price_product">
                 Цена: ` + menu[i].price + ` Р.
             </div>
             <input class="product_count" type="number" min="0" max="20">
-            <input type="button" value="Добавить в корзину" id="` + i + `" onclick="dropPay(id)"/>
+            <input class="pay_button" type="button" value="Добавить в корзину" data-btn="` + menu[i].name + `"/>
         `
 
         menuList.appendChild(newDiv);
     }
 }
 
-function dropPay(id) {
-    console.log("ID: " + id + " Название товара: " + json[id].name)
-}
+document.addEventListener("click", event => {
+    const btnType = event.target.dataset.btn
+    for (let i = 0; i < json.menu.length; i++) {
+        if (btnType === json.menu[i].name) {
+            console.log(json.menu[i].name)
+        }
+    }
+})
 
 const pizzaFilter = document.getElementById("pizzaFilter");
 pizzaFilter.addEventListener("click", () =>
