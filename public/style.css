@@ -1,5 +1,5 @@
 :root {
-    --color-def: rgb(255, 220, 107);
+    --color-def: rgb(126 126 126);
 }
 
 body {
@@ -8,14 +8,36 @@ body {
 }
 
 .bacground_main {
-    background: #f7f7f7;
+    background: #1c1c1c;
+}
+
+.nav_bar {
+    background: #222;
+}
+
+.navigation_button {
+    padding: 10px 20px;
+    height: max-content;
+    border: solid 0px transparent;
+    color: #ffffff;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0);
+    transition: 0.2s ease-in-out
+}
+
+.navigation_button:hover {
+    color: #222;
+    background: #ffffff;
 }
 
 .header_description {
-    font-size: 42px;
-    color: #222;
-    padding: 30px 0px;
+    font-size: 24px;
+    color: #fff;
+    background: #3e3e3e;
+    padding: 10px 25px;
+    margin-bottom: 25px;
     font-weight: bold;
+    text-transform: uppercase;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -46,10 +68,10 @@ body {
 .market_list {
     display: grid;
     width: -webkit-fill-available;
-    grid-template-columns: repeat(3, 33.3333%);
+    grid-template-columns: repeat(2, 50%);
     margin: 0px 20px 20px 0px;
-    background: white;
     box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+    background: #3e3e3e;
     border-radius: 4px;
     justify-content: start;
 }
@@ -59,7 +81,7 @@ body {
     display: flex;
     margin: 0px 20px;
     padding: 20px;
-    background: white;
+    background: #3e3e3e;
     gap: 5px;
     box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
     border-radius: 4px;
@@ -68,22 +90,31 @@ body {
 
 .product {
     border-radius: 4px;
-    padding: 20px;
-    text-align-last: center;
+    padding: 10px;
+    margin: 10px;
+    width: auto;
+    transform: translateY(0px) translateX(0px);
+    box-shadow: 0px 0px 0px rgb(255 255 255 / 10%);
+    transition: 0.2s ease-in-out
 }
 
 .product:hover {
-    box-shadow: 0px 0px 9px 0px rgb(255 220 107);
+    background: var(--color-def);
+    transform: translateY(-10px) translateX(-10px);
+    box-shadow: 10px 10px 0px rgb(255 255 255 / 10%);
 }
 
 .product-filter {
     border-radius: 4px;
     padding: 20px;
+    background: #ffffff0f;
+    color: white;
+    font-weight: 600;
     text-align-last: center;
     border: 0px;
     cursor: pointer;
-    transition: 0.2s ease-in-out ;
-}   
+    transition: 0.2s ease-in-out;
+}  
 
 .product-filter:hover {
     background-color: var(--color-def);
