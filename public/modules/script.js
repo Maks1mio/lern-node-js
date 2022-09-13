@@ -3,7 +3,6 @@ let json = await response.json();
 console.log(json)
 
 const menuList = document.getElementById("contentID");
-const modal = $.modal(open)
 
 addElement(json.menu);
 
@@ -30,12 +29,17 @@ function addElement(menu) {
                 Цена: ` + menu[i].price + ` Р.
             </div>
             <input class="product_count" type="number" min="0" max="20">
-            <input class="pay_button" type="button" value="Добавить в корзину" data-btn="` + menu[i].name + `"/>
+            <input class="pay_button" type="button" value="Добавить в корзину ` +  menu[i].category + `" id="` +  menu[i].category +`"/>
         `
 
-        menuList.appendChild(newDiv);
+        menuList.append(newDiv);
     }
 }
+
+var btn = document.getElementById("sandwiches");
+btn.onclick = function() {
+    console.log("Good")
+  }
 
 document.addEventListener("click", event => {
     const btnType = event.target.dataset.btn
@@ -46,7 +50,8 @@ document.addEventListener("click", event => {
     }
 })
 
-const pizzaFilter = document.getElementById("pizzaFilter");
+const Filter = document.getElementById("pizzaFilter");
+if (Filter)
 pizzaFilter.addEventListener("click", () =>
     addElement(json.menu.filter((item) => item.category === "pizza"))
 );
