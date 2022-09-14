@@ -1,13 +1,70 @@
+<!DOCTYPE HTML>
 <html>
-<body>
-  <div>Пользователи:</div>
-  <ul>
-    <li>Джон</li>
-    <li>Пит</li>
-  </ul>
-</body>
-</html>
 
-<script>
-  alert( document.body ); 
-</script>
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td {
+      border: 1px solid black;
+      padding: 3px 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <table id="elem">
+    <tr>
+      <td>1:1</td>
+      <td>2:1</td>
+      <td>3:1</td>
+      <td>4:1</td>
+      <td>5:1</td>
+    </tr>
+    <tr>
+      <td>1:2</td>
+      <td>2:2</td>
+      <td>3:2</td>
+      <td>4:2</td>
+      <td>5:2</td>
+    </tr>
+    <tr>
+      <td>1:3</td>
+      <td>2:3</td>
+      <td>3:3</td>
+      <td>4:3</td>
+      <td>5:3</td>
+    </tr>
+    <tr>
+      <td>1:4</td>
+      <td>2:4</td>
+      <td>3:4</td>
+      <td>4:4</td>
+      <td>5:4</td>
+    </tr>
+    <tr>
+      <td>1:5</td>
+      <td>2:5</td>
+      <td>3:5</td>
+      <td>4:5</td>
+      <td>5:5</td>
+    </tr>
+  </table>
+  <script>
+    let table = document.body.firstElementChild;
+
+    for (let i = 0; i < table.rows.length; i++) {
+      if (i == 0) color = 'lightgreen'
+      else if (i == 1) color = 'lightblue'
+      else if (i == 2) color = 'pink'
+      else if (i == 3) color = 'yellow'
+      else if (i == 4) color = 'orange'
+      let row = table.rows[i];
+      row.cells[i].style.background = color
+    }
+  </script>
+</body>
+
+</html>
