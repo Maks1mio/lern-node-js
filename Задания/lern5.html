@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <input type="button" id="hider" value="Нажмите, чтобы спрятать текст" />
+
+  <div id="text">Текст</div>
+
+  <input type="button" id="hiderall" value="Спрятать всё">
+
+  <script>
+    // class Menu {
+    //   handleEvent(event) {
+    //     switch (event.type) {
+    //       case 'mousedown':
+    //         text.innerHTML = ""
+    //     }
+    //   }
+    // }
+
+    // let menu = new Menu();
+    // hider.addEventListener('mousedown', menu);
+
+    document.getElementById("hider").onclick = function () {
+      if (text.hidden == false) {
+        document.getElementById("hider").value = "Показать";
+        document.getElementById("hider").style = `
+        background: lightgreen;
+        width: 200px;
+        `;
+        document.getElementById("text").hidden = true;
+      } else {
+        document.getElementById("hider").value = "Скрыть";
+        document.getElementById("hider").style = `
+        background: orange;
+        width: 200px;
+        `;
+        document.getElementById("text").hidden = false;
+      }
+    }
+  </script>
+
+</body>
+
+</html>
