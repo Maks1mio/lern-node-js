@@ -1,114 +1,102 @@
 let response = await fetch("../modules/data.json");
 let json = await response.json();
-let productIdFix = 1; // Херня которая фиксит отображение продукта для кнопок
-
-console.log(json)
-
 
 const menuList = document.getElementById("contentID");
 
-creatingProductElement(json.menu);
+creatingProductElement(json.menu.filter((item) => item.category === "pizza"));
 
 function creatingProductElement(menu) {
-    menuList.innerHTML = ""; // очистка от предыдущего меню
-    console.log(menu.length)
-    console.log(menu)
+    menuList.innerHTML = "";
     for (let i = 0; i < menu.length; i++) {
-        let newDiv = document.createElement("div");
+
+        // Product
+        const newDiv = document.createElement("div");
         newDiv.className = "product";
-        newDiv.innerHTML =
-            `
-            <div style="background-image:url('` + menu[i].image + `');" class="product_prev">
-            </div>
-            <div class="name_product">
-            ` + menu[i].name + `
-            </div>
-            <div class="line"></div>
-            <div class="discription_product">` + menu[i].description + `</div>
-            <div class="line"></div>
-            <div class="line">
-            
-            </div>
-            <div class="price_product">
-                Цена: ` + menu[i].price + ` Р.
-            </div>
-            <input class="product_count" type="number" value="0" min="0" max="20">
-            <input class="pay_button" id="` + menu[i].category + i + `" type="button" value="Добавить в корзину ` + menu[i].category + `"/>
-        `
 
+        // Prudoct Preview
+        const prudoctPreview = document.createElement("div");
+        prudoctPreview.className = "product_prev";
+        prudoctPreview.style = (`background-image:url('` + menu[i].image + `')`);
+
+        // Prudoct Name
+        const prudoctName = document.createElement("div");
+        prudoctName.className = "name_product";
+        prudoctName.innerHTML = (`` + menu[i].name + ``);
+
+        // Prudoct Discription
+        const prudoctDiscription = document.createElement("div");
+        prudoctDiscription.className = "discription_product";
+        prudoctDiscription.innerHTML = (`` + menu[i].description + ``);
+
+        // Container Product Btn
+        const containerProductBtn = document.createElement("div");
+        containerProductBtn.className = "container_product_btn";
+
+        // Pay Button
+        const payButton = document.createElement("input");
+        payButton.className = "pay_button";
+        payButton.id = (`` + menu[i].category + i + ``);
+        payButton.type = "button"
+        payButton.value = (`` + menu[i].price + ` Р.`);
+
+        //addNode
+        newDiv.appendChild(prudoctPreview);
+        newDiv.appendChild(prudoctName);
+        newDiv.appendChild(prudoctDiscription);
+        newDiv.appendChild(containerProductBtn);
+        containerProductBtn.appendChild(payButton);
         menuList.append(newDiv);
-        if (menu[i].category === "sandwiches") {
-            modal(i + productIdFix)
-        } else if (menu[i].category != "sandwiches") {
-            modal(i + productIdFix)
-        }
+
+        // Нажатие на кнопки
+        const item = {
+            categoryPrefix: menu[i].category + i,
+            category: menu[i].category
+        };
+
+        payButton.addEventListener("click", () => {
+
+            if (item.category === "sandwiches") {
+                sandwichesFunction(i, item.categoryPrefix);
+            } else {
+                defaultFunction(i, item.categoryPrefix);
+            }
+        });
     }
 }
 
-
-
-function modal(i) {
-    if (document.querySelectorAll("sandwiches" + i)){
-        var btn = document.querySelectorAll("sandwiches" + i)
-        btn.onclick = function () {
-            let productId = (i - productIdFix)
-            console.log('sandwiches' + productId)
-        }
-    } else {
-        var btn = document.querySelectorAll("salds" + i)
-        btn.onclick = function () {
-            let productId = (i - productIdFix)
-            console.log("Добавлено в карзину salds" + productId)
-        }
-    }
+function sandwichesFunction(i, categoryPrefix) {
+    console.log(categoryPrefix + " | МОДАЛКА ОТКРЫТА | ID: " + i)
 }
 
-document.addEventListener("click", event => {
-    const btnType = event.target.dataset.btn
-    for (let i = 0; i < json.menu.length; i++) {
-        if (btnType === json.menu[i].name) {
-            console.log(json.menu[i].name)
-        }
-    }
-})
+function defaultFunction(i, categoryPrefix) {
+    console.log(categoryPrefix + " | НЕ МОДАЛКА! | ID: " + i)
+}
 
-const Filter = document.getElementById("pizzaFilter");
-if (Filter)
+function creatingModalElement() {
+    // Модалка
+}
+
+const Filter = document.getElementById("pizzaFilter", "sandwichFilter", "chickenFilter", "drinkFilter", "shaurmaFilter", "burgerFilter", "saladFilter");
+if (Filter) {
     pizzaFilter.addEventListener("click", () =>
         creatingProductElement(json.menu.filter((item) => item.category === "pizza"))
     );
-
-const shaurmaFilter = document.getElementById("shaurmaFilter");
-shaurmaFilter.addEventListener("click", () =>
-    creatingProductElement(json.menu.filter((item) => item.category === "shaurma"))
-);
-
-const burgerFilter = document.getElementById("burgerFilter");
-burgerFilter.addEventListener("click", () =>
-    creatingProductElement(json.menu.filter((item) => item.category === "burgers"))
-);
-
-const saladFilter = document.getElementById("saladFilter");
-saladFilter.addEventListener("click", () =>
-    creatingProductElement(json.menu.filter((item) => item.category === "salads"))
-);
-
-const drinkFilter = document.getElementById("drinkFilter");
-drinkFilter.addEventListener("click", () =>
-    creatingProductElement(json.menu.filter((item) => item.category === "drinks"))
-);
-
-const chickenFilter = document.getElementById("chickenFilter");
-chickenFilter.addEventListener("click", () =>
-    creatingProductElement(json.menu.filter((item) => item.category === "chicken"))
-);
-
-const sandwichFilter = document.getElementById("sandwichFilter");
-sandwichFilter.addEventListener("click", () =>
-    creatingProductElement(json.menu.filter((item) => item.category === "sandwiches"))
-);
-
-const clearFilter = document.getElementById("clearFilter");
-clearFilter.addEventListener("click", () =>
-    creatingProductElement(json.menu)
-);
+    sandwichFilter.addEventListener("click", () =>
+        creatingProductElement(json.menu.filter((item) => item.category === "sandwiches"))
+    );
+    chickenFilter.addEventListener("click", () =>
+        creatingProductElement(json.menu.filter((item) => item.category === "chicken"))
+    );
+    drinkFilter.addEventListener("click", () =>
+        creatingProductElement(json.menu.filter((item) => item.category === "drinks"))
+    );
+    shaurmaFilter.addEventListener("click", () =>
+        creatingProductElement(json.menu.filter((item) => item.category === "shaurma"))
+    );
+    burgerFilter.addEventListener("click", () =>
+        creatingProductElement(json.menu.filter((item) => item.category === "burgers"))
+    );
+    saladFilter.addEventListener("click", () =>
+        creatingProductElement(json.menu.filter((item) => item.category === "salads"))
+    );
+}
