@@ -10,19 +10,19 @@ body {
   font-family: 'Outfit', sans-serif;
 }
 
-.bacground_main {
+.bacground-main {
   background: #1c1c1c;
 }
 
-.center_content {
+.center-content {
   display: -webkit-box;
 }
 
-.container_product_btn {
+.container-product-btn {
   display: flex;
 }
 
-.left_content {
+.left-content {
   gap: 20px;
   display: flex;
   flex: 0 0 195px;
@@ -32,7 +32,7 @@ body {
   transition: 0.2s ease-in-out;
 }
 
-.left_content:hover {
+.left-content:hover {
   gap: 40px;
   display: flex;
   padding: 40px;
@@ -41,14 +41,14 @@ body {
   flex-direction: column;
 }
 
-.right_content {
+.right-content {
   display: flex;
   padding: 40px;
   background: #1C0B16;
   -webkit-box-flex: 1;
 }
 
-.market_list {
+.market-list {
   display: flex;
   flex-wrap: wrap;
   border-radius: 4px;
@@ -57,7 +57,7 @@ body {
   box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
 }
 
-.product_list {
+.product-list {
   gap: 10px;
   opacity: 0.5;
   display: flex;
@@ -86,6 +86,7 @@ body {
 }
 
 
+
 @media (max-width: 1708px) {
   .product {
     width: 31%;
@@ -112,17 +113,17 @@ body {
   transform: translateY(-5px) translateX(-5px);
 }
 
-.left_content:hover .product-filter {
+.left-content:hover .product-filter {
   width: 100%;
   padding: 10px 40px;
   justify-content: flex-start;
 }
 
-.left_content:hover .product_list {
+.left-content:hover .product-list {
   opacity: 1;
 }
 
-.left_content:hover .product-filter-name {
+.left-content:hover .product-filter-name {
   opacity: 1;
   font-size: 16px;
   transition: 0.5s ease-in-out;
@@ -165,7 +166,7 @@ body {
   justify-content: space-between;
 }
 
-.pay_button {
+.pay-button {
   border: 0px;
   width: 124px;
   height: 40px;
@@ -179,11 +180,11 @@ body {
   transition: 0.2s ease-in-out;
 }
 
-.pay_button:hover {
+.pay-button:hover {
   background-color: #8b236c;
 }
 
-.product_prev {
+.product-prev {
   flex: none;
   height: 230px;
   border-radius: 6px;
@@ -194,7 +195,7 @@ body {
   width: -webkit-fill-available;
 }
 
-.name_product {
+.name-product {
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 700;
@@ -203,7 +204,7 @@ body {
   padding: 20px 0 5px 0;
 }
 
-.discription_product {
+.discription-product {
   color: #A7A7A7;
   font-size: 15px;
   font-weight: 700;

@@ -15,26 +15,26 @@ function creatingProductElement(menu) {
 
         // Prudoct Preview
         const prudoctPreview = document.createElement("div");
-        prudoctPreview.className = "product_prev";
+        prudoctPreview.className = "product-prev";
         prudoctPreview.style = (`background-image:url('` + menu[i].image + `')`);
 
         // Prudoct Name
         const prudoctName = document.createElement("div");
-        prudoctName.className = "name_product";
+        prudoctName.className = "name-product";
         prudoctName.innerHTML = (`` + menu[i].name + ``);
 
         // Prudoct Discription
         const prudoctDiscription = document.createElement("div");
-        prudoctDiscription.className = "discription_product";
+        prudoctDiscription.className = "discription-product";
         prudoctDiscription.innerHTML = (`` + menu[i].description + ``);
 
         // Container Product Btn
         const containerProductBtn = document.createElement("div");
-        containerProductBtn.className = "container_product_btn";
+        containerProductBtn.className = "container-product-btn";
 
         // Pay Button
         const payButton = document.createElement("input");
-        payButton.className = "pay_button";
+        payButton.className = "pay-button";
         payButton.id = (`` + menu[i].category + i + ``);
         payButton.type = "button"
         payButton.value = (`` + menu[i].price + ` Р.`);
