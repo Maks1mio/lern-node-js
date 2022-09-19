@@ -14,6 +14,16 @@ body {
   background: #1c1c1c;
 }
 
+.basket-list {
+  background: #562725;
+  border: 1px solid #AF504D;
+  border-radius: 6px;
+}
+
+.baslet-tile{
+  background: #00000022;
+}
+
 .center-content {
   display: -webkit-box;
 }
@@ -27,24 +37,21 @@ body {
   display: flex;
   flex: 0 0 195px;
   padding: 40px 20px;
-  background: #220C1B;
+  background: #220D0C;
   flex-direction: column;
   transition: 0.2s ease-in-out;
 }
 
 .left-content:hover {
   gap: 40px;
-  display: flex;
   padding: 40px;
   flex: 0 0 370px;
-  background: #220C1B;
-  flex-direction: column;
 }
 
 .right-content {
   display: flex;
   padding: 40px;
-  background: #1C0B16;
+  background: #1C0C0B;
   -webkit-box-flex: 1;
 }
 
@@ -69,7 +76,7 @@ body {
 }
 
 .product-filter-title {
-  color: #ff38c4;
+  color: #FF4438;
   font-weight: 600;
 }
 
@@ -107,9 +114,9 @@ body {
 
 .product:hover {
   margin: 0;
-  background: #3a1930;
+  background: #612521;
   padding: 10px 10px 30px 10px;
-  box-shadow: 5px -5px 0px #FF38C4;
+  box-shadow: 5px -5px 0px #FF4438;
   transform: translateY(-5px) translateX(-5px);
 }
 
@@ -149,15 +156,15 @@ body {
   padding: 10px 70px;
   border-radius: 6px;
   align-items: center;
-  border: 0px solid #FF38C4;
+  border: 1px solid #AF504D;
   transition: 0.2s ease-in-out;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-  background: linear-gradient(167deg, #5B274C -6.45%, #220C1B 66.25%);
+  background: linear-gradient(167deg, #592926 -6.45%, #220D0C 66.25%);
 }
 
 .product-filter:hover {
   gap: 20px;
-  border-left: 10px solid #59FFC1;
+  border-left: 10px solid #ff584f;
 }
 
 .container {
@@ -175,13 +182,13 @@ body {
   font-size: 24px;
   font-weight: 700;
   margin: 0 auto 0 0;
-  background: #FF38C4;
+  background: #FF4438;
   border-radius: 39px;
   transition: 0.2s ease-in-out;
 }
 
 .pay-button:hover {
-  background-color: #8b236c;
+  background-color: #ff2c1d;
 }
 
 .product-prev {

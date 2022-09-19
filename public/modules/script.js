@@ -1,4 +1,4 @@
-let response = await fetch("../modules/data.json");
+let response = await fetch("../modules/dataJSON/data.json");
 let json = await response.json();
 
 const menuList = document.getElementById("contentID");

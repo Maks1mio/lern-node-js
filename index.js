@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
 
     let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
     const ext = path.extname(filePath);
-    let contentType = 'text/html';
+    let contentType = "text/html";
 
     switch (ext) {
         case '.css':
@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
             contentType = 'text/javascript';
             break;
         default:
-            contentType = 'text/html';
+            contentType = "text/html";
     }
 
     if (!ext) {
