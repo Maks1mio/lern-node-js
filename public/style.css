@@ -68,6 +68,28 @@ body {
   -webkit-box-flex: 1;
 }
 
+#modal {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #00000099;
+}
+
+.modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.modal-resize {
+  background: antiquewhite;
+  width: 80%;
+}
+
 .market-list {
   display: flex;
   flex-wrap: wrap;
@@ -180,7 +202,8 @@ body {
   border-left: 10px solid #ff584f;
 }
 
-.container, .product-basket {
+.container,
+.product-basket {
   display: flex;
   margin: 10px 20px;
   border-bottom: 1px solid #00000038;
@@ -223,16 +246,16 @@ body {
 
 .text-input {
   margin: 0;
-    border: 0px;
-    width: 124px;
-    height: 40px;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: 700;
-    background: none;
-    transition: 0.2s ease-in-out;
-    text-align-last: center;
+  border: 0px;
+  width: 124px;
+  height: 40px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 700;
+  background: none;
+  transition: 0.2s ease-in-out;
+  text-align-last: center;
 }
 
 .text-input:hover {
