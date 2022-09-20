@@ -20,8 +20,21 @@ body {
   border-radius: 6px;
 }
 
-.baslet-tile{
+.baslet-tile {
+  padding: 20px;
+  display: flex;
+  gap: 25px;
   background: #00000022;
+  font-size: 20px;
+  align-items: center;
+}
+
+.basket-name {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .center-content {
@@ -167,10 +180,16 @@ body {
   border-left: 10px solid #ff584f;
 }
 
-.container {
+.container, .product-basket {
   display: flex;
-  margin: 0px 20px;
+  margin: 10px 20px;
+  border-bottom: 1px solid #00000038;
   justify-content: space-between;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
 }
 
 .pay-button {
@@ -197,9 +216,27 @@ body {
   border-radius: 6px;
   background-size: contain;
   background-position: 50%;
-  background-color: #ededed;
+  background-color: #ffffff;
   background-repeat: no-repeat;
   width: -webkit-fill-available;
+}
+
+.text-input {
+  margin: 0;
+    border: 0px;
+    width: 124px;
+    height: 40px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+    background: none;
+    transition: 0.2s ease-in-out;
+    text-align-last: center;
+}
+
+.text-input:hover {
+  background: #562725;
 }
 
 .name-product {
