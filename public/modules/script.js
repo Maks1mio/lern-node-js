@@ -2,8 +2,6 @@ let response = await fetch("../modules/dataJSON/data.json");
 let json = await response.json();
 let value;
 
-
-
 json.menu = json.menu.map((product, index) => ({
     ...product,
     id: index
@@ -11,6 +9,7 @@ json.menu = json.menu.map((product, index) => ({
 
 const menuList = document.getElementById("contentID");
 const basketList = document.getElementById("basket");
+const bodyModal = document.getElementById("forModal");
 
 filterBtn(json.categories)
 creatingProductElement(json.menu.filter((item) => item.category === "pizza"));
@@ -18,6 +17,8 @@ creatingProductElement(json.menu.filter((item) => item.category === "pizza"));
 function creatingProductElement(menu) {
     menuList.innerHTML = "";
     for (let i = 0; i < menu.length; i++) {
+        console.log(menu[i].id)
+        console.log(i)
         const newDiv = document.createElement("div");
         newDiv.className = "product";
 
@@ -47,12 +48,19 @@ function creatingProductElement(menu) {
         payButton.type = "button"
         payButton.value = menu[i].price;
 
-        // Pay Button
+        // Count Product
         const countProduct = document.createElement("input");
         countProduct.className = "text-input";
         countProduct.id = menu[i].id;
         countProduct.type = "number"
         countProduct.value = 1;
+        countProduct.addEventListener("input", () => {
+            if (countProduct.value >= 20) {
+                countProduct.value = 20
+            } else if (countProduct.value <= 1) {
+                countProduct.value = 1
+            }
+        })
 
         //addNode
         newDiv.appendChild(prudoctPreview);
@@ -71,55 +79,62 @@ function creatingProductElement(menu) {
             categoryPrefix: menu[i].category + i,
             category: menu[i].category
         };
-
         payButton.addEventListener("click", () => {
-
             if (item.category === "sandwiches") {
-                sandwichesFunction(i, item.categoryPrefix);
+                creatingModalElement(item.name, item.price, item.id, countProduct.value);
             } else {
-                defaultFunction(item.name, item.price, item.id);
+                defaultFunction(item.name, item.price, item.id, countProduct.value);
             }
         });
     }
 }
 
-function sandwichesFunction(i, categoryPrefix) {
-    console.log(categoryPrefix + " | МОДАЛКА ОТКРЫТА | ID: " + i)
-}
-
-function defaultFunction(name, price, id) {
-    let count = document.getElementById(id)
-    if (count.value >= 20) {
-        value = 20
-    } else if (count.value <= 1) {
-        value = 1
-    } else {
-        value = count.value;
-    }
-    // переделать в инпут
-
+function defaultFunction(name, price, id, count) {
     const basketDiv = document.createElement("div");
     basketDiv.className = "product-basket";
 
     // Name
     const nameProductBasket = document.createElement("div");
     nameProductBasket.className = "";
-    nameProductBasket.innerHTML = name;
+    nameProductBasket.innerHTML = `Товар: ${name}`;
 
     // Count
     const countProductBasket = document.createElement("div");
     countProductBasket.className = "";
-    countProductBasket.innerHTML = value;
+    countProductBasket.textContent = `Цена: ${price * count}, Кол: ${count}`;
 
     basketDiv.appendChild(nameProductBasket);
     basketDiv.appendChild(countProductBasket);
     basketList.append(basketDiv);
 }
 
-function creatingModalElement() {
-    // модалка
+function creatingModalElement(name, price, id, count) {
     const newModal = document.createElement("div");
     newModal.id = "modal"
+
+    const modalContent = document.createElement("div");
+    modalContent.className = "modal-content";
+
+    const modalResize = document.createElement("div");
+    modalResize.className = "modal-resize";
+
+    const upContent = document.createElement("div");
+    upContent.className = "";
+    upContent.textContent = `${name}: ${count}`
+
+    const downContent = document.createElement("div");
+    downContent.className = "";
+    downContent.textContent = price
+
+    newModal.appendChild(modalContent);
+    modalContent.appendChild(modalResize);
+    modalResize.appendChild(upContent);
+    modalResize.appendChild(downContent);
+    bodyModal.before(newModal);
+
+    setTimeout(() => {
+        // newModal.remove();
+    }, 3000);
 }
 
 function filterBtn() {

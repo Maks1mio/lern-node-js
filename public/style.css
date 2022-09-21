@@ -23,9 +23,11 @@ body {
 .baslet-tile {
   padding: 20px;
   display: flex;
+  position: relative;
   gap: 25px;
   background: #00000022;
   font-size: 20px;
+  overflow: hidden;
   align-items: center;
 }
 
@@ -68,9 +70,15 @@ body {
   -webkit-box-flex: 1;
 }
 
+.matrix {
+  position: absolute;
+  transform: matrix(1, 0, 3.8, 21.3, 17.4, 92.6);
+  opacity: 0.2;
+}
+
 #modal {
   z-index: 2;
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
