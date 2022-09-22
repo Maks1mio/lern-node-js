@@ -296,7 +296,9 @@ body {
 }
 
 .pay-button {
+  z-index: 2;
   border: 0px;
+  transform: translateX(-50px);
   width: 124px;
   height: 100%;
   color: #FFFFFF;
@@ -309,8 +311,8 @@ body {
   transition: 0.2s ease-in-out;
 }
 
-.pay-button:hover {
-  background-color: #ff2c1d;
+.product:hover .pay-button {
+  transform: translateX(-20px);
 }
 
 .product-prev {
@@ -325,8 +327,10 @@ body {
 }
 
 .text-input {
+  z-index: 4;
   margin: 0;
   border: 0px;
+  position: relative;
   width: 124px;
   height: 40px;
   color: #FFFFFF;
