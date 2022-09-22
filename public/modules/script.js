@@ -27,26 +27,32 @@ function creatingProductElement(menu) {
         prudoctPreview.className = "product-prev";
         prudoctPreview.style = `background-image:url('` + menu[i].image + `')`;
 
+        const priceProduct = document.createElement("div")
+        priceProduct.className = "price-name"
+        priceProduct.textContent = `${menu[i].price}руб`;
+
         // Name
         const prudoctName = document.createElement("div");
         prudoctName.className = "name-product";
-        prudoctName.innerHTML = menu[i].name;
+        prudoctName.textContent = menu[i].name;
 
         // Discription
         const prudoctDiscription = document.createElement("div");
         prudoctDiscription.className = "discription-product";
-        prudoctDiscription.innerHTML = menu[i].description;
+        prudoctDiscription.textContent = menu[i].description;
 
-        // Container Product Btn
-        const containerProductBtn = document.createElement("div");
-        containerProductBtn.className = "container-product-btn";
+        // Description count text
+        const countText = document.createElement("div")
+        countText.className = "count-text";
+        countText.textContent = "Количество"
 
-        // Pay Button
-        const payButton = document.createElement("input");
-        payButton.className = "pay-button";
-        payButton.id = menu[i].category + i;
-        payButton.type = "button"
-        payButton.value = menu[i].price;
+        // Container
+        const container = document.createElement("div")
+        container.className = "content-container";
+
+        // // Container Product Btn
+        // const containerProductBtn = document.createElement("div");
+        // containerProductBtn.className = "container-product-btn";
 
         // Count Product
         const countProduct = document.createElement("input");
@@ -62,13 +68,24 @@ function creatingProductElement(menu) {
             }
         })
 
+        // Pay Button
+        const payButton = document.createElement("input");
+        payButton.className = "pay-button";
+        payButton.id = menu[i].category + i;
+        payButton.type = "button"
+        payButton.value = ":)";
+
         //addNode
         newDiv.appendChild(prudoctPreview);
+        newDiv.appendChild(priceProduct);
         newDiv.appendChild(prudoctName);
         newDiv.appendChild(prudoctDiscription);
-        newDiv.appendChild(containerProductBtn);
-        containerProductBtn.appendChild(payButton);
-        containerProductBtn.appendChild(countProduct);
+        newDiv.appendChild(countText);
+        newDiv.appendChild(container);
+        container.appendChild(countProduct);
+        container.appendChild(payButton);
+        // containerProductBtn.appendChild(payButton);
+        // containerProductBtn.appendChild(countProduct);
         menuList.append(newDiv);
 
         // Нажатие на кнопки
@@ -81,34 +98,71 @@ function creatingProductElement(menu) {
         };
         payButton.addEventListener("click", () => {
             if (item.category === "sandwiches") {
-                creatingModalElement(item.name, item.price, item.id, countProduct.value);
+                creatingModalElement({
+                    name: item.name,
+                    price: item.price,
+                    id: item.id,
+                    countProductValue: countProduct.value
+                });
             } else {
-                defaultFunction(item.name, item.price, item.id, countProduct.value);
+                addingProductToTheBasket({
+                    name: item.name,
+                    price: item.price,
+                    id: item.id,
+                    countProductValue: countProduct.value
+                });
+
             }
         });
     }
 }
 
-function defaultFunction(name, price, id, count) {
+function addingProductToTheBasket(params) {
+    let allPrice = (params.price * params.countProductValue)
     const basketDiv = document.createElement("div");
     basketDiv.className = "product-basket";
+
+    // Delete
+    const deleteProduct = document.createElement("button");
+    deleteProduct.className = "trash-button";
+    deleteProduct.addEventListener("click", () => {
+        removeProductPriceFromBasket(allPrice)
+        basketDiv.remove()
+    })
+
+    // Svg
+    const svgTrash = document.createElement("img")
+    svgTrash.src = "modules/svg/trash.svg"
 
     // Name
     const nameProductBasket = document.createElement("div");
     nameProductBasket.className = "";
-    nameProductBasket.innerHTML = `Товар: ${name}`;
+    nameProductBasket.innerHTML = params.name;
 
     // Count
     const countProductBasket = document.createElement("div");
     countProductBasket.className = "";
-    countProductBasket.textContent = `Цена: ${price * count}, Кол: ${count}`;
+    countProductBasket.textContent = params.countProductValue;
 
+    basketDiv.appendChild(deleteProduct);
+    deleteProduct.appendChild(svgTrash);
     basketDiv.appendChild(nameProductBasket);
     basketDiv.appendChild(countProductBasket);
     basketList.append(basketDiv);
+
+    setProductPriceFroBasket(allPrice)
 }
 
-function creatingModalElement(name, price, id, count) {
+function setProductPriceFroBasket(allPrice) {
+    sum.innerHTML = +sum.innerText + allPrice
+}
+
+function removeProductPriceFromBasket(allPrice) {
+    sum.innerText = +sum.innerText - allPrice
+}
+
+function creatingModalElement(params) {
+    let allPrice = (params.price * params.countProductValue)
     const newModal = document.createElement("div");
     newModal.id = "modal"
 
@@ -120,11 +174,11 @@ function creatingModalElement(name, price, id, count) {
 
     const upContent = document.createElement("div");
     upContent.className = "";
-    upContent.textContent = `${name}: ${count}`
+    upContent.textContent = `${params.name}: ${params.countProductValue}`
 
     const downContent = document.createElement("div");
     downContent.className = "";
-    downContent.textContent = price
+    downContent.textContent = allPrice
 
     newModal.appendChild(modalContent);
     modalContent.appendChild(modalResize);
@@ -133,8 +187,9 @@ function creatingModalElement(name, price, id, count) {
     bodyModal.before(newModal);
 
     setTimeout(() => {
-        // newModal.remove();
-    }, 3000);
+        newModal.remove()
+        addingProductToTheBasket(params)
+    }, 2000);
 }
 
 function filterBtn() {
@@ -167,6 +222,8 @@ function filterBtn() {
             filter: 'salads'
         },
     ]
+
+    // переделать
 
     for (let g = 0; g < categories.length; g++) {
         categories[g].id.addEventListener("click", () =>
