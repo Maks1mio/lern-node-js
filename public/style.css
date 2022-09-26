@@ -10,7 +10,7 @@ body {
   font-family: 'Outfit', sans-serif;
 }
 
-.bacground-main {
+.background-main {
   background: #1c1c1c;
 }
 
@@ -80,6 +80,19 @@ body {
 
 .container-product-btn {
   display: flex;
+  gap: 10px;
+}
+
+.button-plus-minus {
+  z-index: 4;
+  height: 50px;
+  width: 25%;
+  border-radius: 6px;
+  border: 1px solid #ff4438;
+  font-weight: 700;
+  font-size: x-large;
+  color: white;
+  background: #1c0c0b;
 }
 
 .left-content {
@@ -141,8 +154,41 @@ body {
 }
 
 .modal-resize {
-  background: antiquewhite;
+  display: flex;
   width: 80%;
+  height: 80%;
+  flex-direction: column;
+}
+
+.modal-top-description {
+  display: flex;
+  padding: 10px 50px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-radius: 6px 6px 0 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+  background: #BD352C;
+}
+
+.modal-close {
+  display: grid;
+  border: 0 solid;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.modal-down-content {
+  padding: 25px 50px;
+  height: 100%;
+  background: #220D0C;
+  color: white;
+  border-radius: 0 0 6px 6px;
 }
 
 .market-list {
@@ -275,6 +321,7 @@ body {
   font-size: 14px;
   line-height: 18px;
   color: #FF4438;
+  transition: 0.2s ease-in-out;
 }
 
 .trash-button {
@@ -296,23 +343,33 @@ body {
 }
 
 .pay-button {
-  z-index: 2;
-  border: 0px;
-  transform: translateX(-50px);
-  width: 124px;
-  height: 100%;
+  display: flex;
+  padding: 6px 31px;
+  opacity: 0;
+  height: 1px;
+  font-size: 16px;
+  font-weight: 700;
   color: #FFFFFF;
   cursor: pointer;
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0 auto 0 0;
+  border: 0;
+  transform: translateY(30px);
   background: #FF4438;
   border-radius: 6px;
   transition: 0.2s ease-in-out;
+  justify-content: center;
+}
+
+.pay-button:hover {
+  background: #bf3329;
 }
 
 .product:hover .pay-button {
-  transform: translateX(-20px);
+  opacity: 1;
+  height: 60px;
+}
+
+.product:hover .count-text {
+  transform: translateY(30px);
 }
 
 .product-prev {
@@ -327,12 +384,9 @@ body {
 }
 
 .text-input {
-  z-index: 4;
-  margin: 0;
-  border: 0px;
   position: relative;
-  width: 124px;
-  height: 40px;
+  width: 80%;
+  height: 45px;
   color: #FFFFFF;
   background: #1C0C0B !important;
   border: 1px solid #FF4438;
@@ -340,13 +394,12 @@ body {
   cursor: pointer;
   font-size: 24px;
   font-weight: 700;
-  background: none;
   transition: 0.2s ease-in-out;
   text-align-last: center;
 }
 
-.text-input:hover {
-  background: #562725;
+.product:hover .text-input {
+  /* width: 80%; */
 }
 
 .name-product {
@@ -382,85 +435,4 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
-}
-
-.vmodal.open .modal-overlay,
-.vmodal.open .modal-window {
-  opacity: 1;
-  z-index: 1000;
-}
-
-.vmodal.hide .modal-overlay,
-.vmodal.hide .modal-window {
-  opacity: 1;
-  z-index: 1000;
-}
-
-.vmodal.open .modal-window {
-  transform: translateY(100px);
-}
-
-.vmodal.open .modal-overlay {
-  background: rgba(0, 0, 0, .5);
-}
-
-.vmodal.hide .modal-window {
-  transform: translateY(-200px);
-}
-
-.vmodal.hide .modal-overlay {
-  background: rgba(0, 0, 0, 0);
-}
-
-.modal-window,
-.modal-overlay {
-  opacity: 0;
-  z-index: -1;
-}
-
-.modal-overlay {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: fixed;
-  background: rgba(0, 0, 0, 0);
-  transition: background .2s ease-in;
-}
-
-.modal-window {
-  width: 600px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 5px;
-  transform: translateY(-200px);
-  transition: transform .2s ease-in;
-}
-
-.modal-header {
-  display: flex;
-  padding: 5px 10px;
-  border-bottom: 1px solid #eee;
-  justify-content: space-between;
-}
-
-.modal-title {
-  font-size: 1.5rem;
-}
-
-.modal-close {
-  cursor: pointer;
-}
-
-.modal-body {
-  padding: 10px;
-}
-
-.modal-body p {
-  margin: 0 0 5px;
-}
-
-.modal-footer {
-  padding: 5px 10px;
-  border-top: 1px solid #eee;
 }

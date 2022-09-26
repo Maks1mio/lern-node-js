@@ -11,10 +11,10 @@ const menuList = document.getElementById("contentID");
 const basketList = document.getElementById("basket");
 const bodyModal = document.getElementById("forModal");
 
-filterBtn(json.categories)
-creatingProductElement(json.menu.filter((item) => item.category === "pizza"));
+filterBtn(json)
+creatingProductElement(json.menu.filter((item) => item.category === "pizza"), json);
 
-function creatingProductElement(menu) {
+function creatingProductElement(menu, json) {
     menuList.innerHTML = "";
     for (let i = 0; i < menu.length; i++) {
         console.log(menu[i].id)
@@ -50,9 +50,28 @@ function creatingProductElement(menu) {
         const container = document.createElement("div")
         container.className = "content-container";
 
-        // // Container Product Btn
-        // const containerProductBtn = document.createElement("div");
-        // containerProductBtn.className = "container-product-btn";
+        // Container Product Btn
+        const containerProductBtn = document.createElement("div");
+        containerProductBtn.className = "container-product-btn";
+
+
+        // Button Minus
+        const minusButton = document.createElement("button");
+        minusButton.className = "button-plus-minus"
+        minusButton.textContent = "-"
+        minusButton.addEventListener("click", () => {
+            if (countProduct.value <= 1) countProduct.value = 1
+            else countProduct.value = parseInt(countProduct.value) - 1
+        })
+
+        // Button Plus
+        const plusButton = document.createElement("button");
+        plusButton.className = "button-plus-minus"
+        plusButton.textContent = "+"
+        plusButton.addEventListener("click", () => {
+            if (countProduct.value >= 20) countProduct.value = 20
+            else countProduct.value = parseInt(countProduct.value) + 1
+        })
 
         // Count Product
         const countProduct = document.createElement("input");
@@ -61,19 +80,16 @@ function creatingProductElement(menu) {
         countProduct.type = "number"
         countProduct.value = 1;
         countProduct.addEventListener("input", () => {
-            if (countProduct.value >= 20) {
-                countProduct.value = 20
-            } else if (countProduct.value <= 1) {
-                countProduct.value = 1
-            }
+            if (countProduct.value >= 20) countProduct.value = 20
+            else if (countProduct.value <= 1) countProduct.value = 1
         })
 
         // Pay Button
-        const payButton = document.createElement("input");
+        const payButton = document.createElement("button");
         payButton.className = "pay-button";
         payButton.id = menu[i].category + i;
         payButton.type = "button"
-        payButton.value = ":)";
+        payButton.textContent = "В корзину"
 
         //addNode
         newDiv.appendChild(prudoctPreview);
@@ -82,10 +98,11 @@ function creatingProductElement(menu) {
         newDiv.appendChild(prudoctDiscription);
         newDiv.appendChild(countText);
         newDiv.appendChild(container);
-        container.appendChild(countProduct);
         container.appendChild(payButton);
-        // containerProductBtn.appendChild(payButton);
-        // containerProductBtn.appendChild(countProduct);
+        container.appendChild(containerProductBtn);
+        containerProductBtn.appendChild(countProduct);
+        containerProductBtn.appendChild(minusButton);
+        containerProductBtn.appendChild(plusButton);
         menuList.append(newDiv);
 
         // Нажатие на кнопки
@@ -96,12 +113,14 @@ function creatingProductElement(menu) {
             categoryPrefix: menu[i].category + i,
             category: menu[i].category
         };
+
         payButton.addEventListener("click", () => {
             if (item.category === "sandwiches") {
                 creatingModalElement({
                     name: item.name,
                     price: item.price,
                     id: item.id,
+                    json: json,
                     countProductValue: countProduct.value
                 });
             } else {
@@ -111,7 +130,6 @@ function creatingProductElement(menu) {
                     id: item.id,
                     countProductValue: countProduct.value
                 });
-
             }
         });
     }
@@ -162,7 +180,6 @@ function removeProductPriceFromBasket(allPrice) {
 }
 
 function creatingModalElement(params) {
-    let allPrice = (params.price * params.countProductValue)
     const newModal = document.createElement("div");
     newModal.id = "modal"
 
@@ -173,26 +190,51 @@ function creatingModalElement(params) {
     modalResize.className = "modal-resize";
 
     const upContent = document.createElement("div");
-    upContent.className = "";
-    upContent.textContent = `${params.name}: ${params.countProductValue}`
+    upContent.className = "modal-top-description";
+    upContent.textContent = `Проверьте и добавьте в корзину`
+
+    const closeButton = document.createElement("button")
+    closeButton.addEventListener("click", () => {
+        newModal.remove()
+    })
+    closeButton.className = "modal-close"
+
+    const svgClose = document.createElement("img")
+    svgClose.src = "modules/svg/close.svg"
 
     const downContent = document.createElement("div");
-    downContent.className = "";
-    downContent.textContent = allPrice
+    downContent.className = "modal-down-content";
+    downContent.id = "inModal"
 
     newModal.appendChild(modalContent);
     modalContent.appendChild(modalResize);
     modalResize.appendChild(upContent);
     modalResize.appendChild(downContent);
+    upContent.appendChild(closeButton);
+    closeButton.appendChild(svgClose);
     bodyModal.before(newModal);
 
+    greatingWindowInModal(params, {
+        id: downContent.id,
+    })
+
     setTimeout(() => {
-        newModal.remove()
-        addingProductToTheBasket(params)
-    }, 2000);
+        // newModal.remove()
+        // addingProductToTheBasket(params)
+    }, 10);
 }
 
-function filterBtn() {
+function greatingWindowInModal(params, elemId) {
+    console.log(params.json)
+    const modalWindow = document.getElementById(elemId.id)
+
+    const test = document.createElement("div");
+    test.className = "modal-top-description";
+    test.textContent = `${params.countProductValue} : ${params.id} : ${params.price} : ${params.price * params.countProductValue} //// ${params.json.menu[params.id].name}`; 
+    modalWindow.append(test);
+}
+
+function filterBtn(json) {
     const categories = [{
             id: pizzaFilter,
             filter: 'pizza'
@@ -227,7 +269,7 @@ function filterBtn() {
 
     for (let g = 0; g < categories.length; g++) {
         categories[g].id.addEventListener("click", () =>
-            creatingProductElement(json.menu.filter((item) => item.category === categories[g].filter))
+            creatingProductElement(json.menu.filter((item) => item.category === categories[g].filter), json)
         );
     }
 }
