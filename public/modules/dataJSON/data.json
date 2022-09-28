@@ -1335,18 +1335,20 @@
       "short_name": "барбекю"
     }
   },
-  "sizes": {
-    "1x": {
-      "name": "15 См",
+  "sizes": [
+    {
+      "size": "1x",
+      "name": "15См",
       "price": 0,
       "image": "/i/sizes/1x.jpg"
     },
-    "2x": {
-      "name": "30 См",
-      "price": 110,
+    {
+      "size": "2x",
+      "name": "30См",
+      "price": 170,
       "image": "/i/sizes/2x.jpg"
     }
-  },
+  ],
   "breads": {
     "white-italian": {
       "name": "Белый итальянский",

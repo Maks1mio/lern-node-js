@@ -225,13 +225,117 @@ function creatingModalElement(params) {
 }
 
 function greatingWindowInModal(params, elemId) {
-    console.log(params.json)
     const modalWindow = document.getElementById(elemId.id)
 
-    const test = document.createElement("div");
-    test.className = "modal-top-description";
-    test.textContent = `${params.countProductValue} : ${params.id} : ${params.price} : ${params.price * params.countProductValue} //// ${params.json.menu[params.id].name}`; 
-    modalWindow.append(test);
+    const steps = [{
+            id: 'stepID0',
+            name: 'Размер'
+        },
+        {
+            id: 'stepID1',
+            name: 'Хлеб'
+        },
+        {
+            id: 'stepID2',
+            name: 'Овощи'
+        },
+        {
+            id: 'stepID3',
+            name: 'Соусы'
+        },
+        {
+            id: 'stepID4',
+            name: 'Начинка'
+        },
+    ]
+
+    const borderSteps = document.createElement("div");
+    borderSteps.className = "border-step"
+
+    for (let g = 0; g < steps.length; g++) {
+        const stepContaine = document.createElement("div")
+        stepContaine.className = "step-container"
+        stepContaine.id = steps[g].id;
+
+        const rectangle = document.createElement("div")
+        rectangle.className = "step-rectangle"
+
+        const stepName = document.createElement("div")
+        stepName.className = "step-name"
+        stepName.textContent = steps[g].name;
+
+        stepContaine.appendChild(rectangle);
+        stepContaine.appendChild(stepName);
+        borderSteps.append(stepContaine);
+    }
+
+    modalWindow.append(borderSteps);
+
+    stepOneSize(params, elemId)
+}
+
+function stepOneSize(params, elemId) {
+    const modalWindow = document.getElementById(elemId.id)
+    modalWindow,innerHTML = ""
+
+    const selectContent = document.createElement("div")
+    selectContent.className = "select-content";
+    selectContent.id = "selectContentId";
+
+    const selectStep = document.createElement("div")
+    selectStep.className = "select-steps";
+    selectContent.id = "selectStepId";
+
+    const rectangleModalUp = document.createElement("div")
+    rectangleModalUp.className = "rectangle-modal";
+
+    const scroller = document.createElement("div")
+    scroller.className = "scroller";
+
+    const rectangleModalDown = document.createElement("div")
+    rectangleModalDown.className = "rectangle-modal";
+
+    const sortFlex = document.createElement("div")
+    sortFlex.className = "sort-flex";
+
+    for (let i = 0; i < params.json.sizes.length; i++) {
+        const productModal = document.createElement("div")
+        productModal.className = "product-modal";
+    
+        const productModalPrev = document.createElement("div")
+        productModalPrev.className = "product-modal-prev";
+        productModalPrev.style = `background-image:url('` + params.json.sizes[i].image + `')`;
+    
+        const priceName = document.createElement("span")
+        priceName.className = "price-name";
+        priceName.textContent = `${params.json.sizes[i].price}руб`;
+    
+        const nameProduct = document.createElement("span")
+        nameProduct.className = "name-product"
+        nameProduct.textContent = params.json.sizes[i].name 
+
+        sortFlex.appendChild(productModal);
+        productModal.appendChild(productModalPrev);
+        productModal.appendChild(priceName);
+        productModal.appendChild(nameProduct);
+    }
+
+    const stepButtonBack = document.createElement("button")
+    stepButtonBack.className = "step-button";
+    stepButtonBack.textContent = "НАЗАД"
+
+    const stepButtonNext = document.createElement("button")
+    stepButtonNext.className = "step-button";
+    stepButtonNext.textContent = "ВПЕРЕД"
+
+    modalWindow.append(selectContent);
+    selectContent.appendChild(rectangleModalUp);
+    selectContent.appendChild(scroller);
+    scroller.appendChild(sortFlex);
+    selectContent.appendChild(rectangleModalDown);
+    modalWindow.append(selectStep);
+    selectStep.appendChild(stepButtonBack);
+    selectStep.appendChild(stepButtonNext);
 }
 
 function filterBtn(json) {
