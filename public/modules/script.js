@@ -276,7 +276,6 @@ function greatingWindowInModal(params, elemId) {
 
 function stepOneSize(params, elemId) {
     const modalWindow = document.getElementById(elemId.id)
-    modalWindow,innerHTML = ""
 
     const selectContent = document.createElement("div")
     selectContent.className = "select-content";
