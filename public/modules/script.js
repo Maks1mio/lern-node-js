@@ -2,6 +2,12 @@ let response = await fetch("../modules/dataJSON/data.json");
 let json = await response.json();
 let value;
 
+let constructorModal = {
+    Id: 1,
+    stepID1: 0,
+    
+};
+
 json.menu = json.menu.map((product, index) => ({
     ...product,
     id: index
@@ -217,11 +223,6 @@ function creatingModalElement(params) {
     greatingWindowInModal(params, {
         id: downContent.id,
     })
-
-    setTimeout(() => {
-        // newModal.remove()
-        // addingProductToTheBasket(params)
-    }, 10);
 }
 
 function greatingWindowInModal(params, elemId) {
@@ -271,10 +272,12 @@ function greatingWindowInModal(params, elemId) {
 
     modalWindow.append(borderSteps);
 
-    stepOneSize(params, elemId)
+    stepSize(params, elemId);
 }
 
-function stepOneSize(params, elemId) {
+function stepSize(params, elemId) {
+    const newModal = document.getElementById("modal");
+
     const modalWindow = document.getElementById(elemId.id)
 
     const selectContent = document.createElement("div")
@@ -298,20 +301,40 @@ function stepOneSize(params, elemId) {
     sortFlex.className = "sort-flex";
 
     for (let i = 0; i < params.json.sizes.length; i++) {
+ 
         const productModal = document.createElement("div")
         productModal.className = "product-modal";
-    
+        productModal.id = "productModalID" + i;
+        // if (i == localStorage.getItem()) {
+        //     productModal.style.background = "#c43d33";
+        //     console.log(localStorage.stepID0)
+        // }
+        productModal.addEventListener("click", () => {
+            constructorModal.stepID1 = i;
+            ChangeProduc(constructorModal.stepID1);
+            // step(params, elemId);
+        })
+
         const productModalPrev = document.createElement("div")
         productModalPrev.className = "product-modal-prev";
-        productModalPrev.style = `background-image:url('` + params.json.sizes[i].image + `')`;
-    
+        if (constructorModal.Id = 1) {
+            constructorModal.imageID1 = params.json.sizes[i].image
+            productModalPrev.style = `background-image:url(${constructorModal.imageID1})`;
+        }
+
         const priceName = document.createElement("span")
         priceName.className = "price-name";
-        priceName.textContent = `${params.json.sizes[i].price}руб`;
-    
+        if (constructorModal.Id = 1) {
+            constructorModal.priceID1 = params.json.sizes[i].price;
+            priceName.textContent = `${constructorModal.priceID1}руб`;
+        }
+
         const nameProduct = document.createElement("span")
         nameProduct.className = "name-product"
-        nameProduct.textContent = params.json.sizes[i].name 
+        if (constructorModal.Id = 1) {
+            constructorModal.nameID1 = params.json.sizes[i].name
+            nameProduct.textContent = constructorModal.nameID1;
+        }
 
         sortFlex.appendChild(productModal);
         productModal.appendChild(productModalPrev);
@@ -321,7 +344,12 @@ function stepOneSize(params, elemId) {
 
     const stepButtonBack = document.createElement("button")
     stepButtonBack.className = "step-button";
-    stepButtonBack.textContent = "НАЗАД"
+    if (constructorModal.Id = 1) {
+        stepButtonBack.textContent = "ЗАКРЫТЬ"
+        stepButtonBack.addEventListener("click", () => {
+            newModal.remove();
+        })
+    }
 
     const stepButtonNext = document.createElement("button")
     stepButtonNext.className = "step-button";
@@ -335,6 +363,11 @@ function stepOneSize(params, elemId) {
     modalWindow.append(selectStep);
     selectStep.appendChild(stepButtonBack);
     selectStep.appendChild(stepButtonNext);
+}
+
+function ChangeProduc(item) {
+    console.log(item)
+    // serlectItem = document.getElementById("");
 }
 
 function filterBtn(json) {

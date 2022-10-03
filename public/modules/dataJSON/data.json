@@ -1337,12 +1337,14 @@
   },
   "sizes": [
     {
+      "id": 0,
       "size": "1x",
       "name": "15См",
       "price": 0,
       "image": "/i/sizes/1x.jpg"
     },
     {
+      "id": 1,
       "size": "2x",
       "name": "30См",
       "price": 170,
