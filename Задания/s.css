@@ -1,5 +1,21 @@
 .game-panel {
-    width: 500px;
-    height: 500px;
+    width: max-content;
     background: rgb(139, 199, 43);
+}
+
+.strokeTd {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border: 1px solid #000000;
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.winner-panel {
+    width: fit-content;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #000000;
 }
